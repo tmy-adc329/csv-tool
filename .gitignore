@@ -1,0 +1,18 @@
+# Pythonの中間ファイル（実行のたびに自動生成される）
+__pycache__/
+*.pyc
+
+# サンプルデータと出力（setup_data.py / main.py で再生成できる）
+data/
+output/
+
+# 仮想環境を作る場合
+.venv/
+venv/
+
+# Claude Codeのローカル設定（環境ごとの個人設定、共有しない）
+.claude/settings.local.json
+
+# OSが勝手に作るファイル
+.DS_Store
+Thumbs.db
