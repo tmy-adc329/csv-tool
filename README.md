@@ -7,6 +7,28 @@
 <!-- TODO: 30秒程度のデモGIFをここに置く（python main.py 実行 → output/ のExcelが開くまで） -->
 `python main.py` を実行するだけで、`data/` の15ファイルから `output/売上集計_YYYYMM.xlsx` が数秒で出来上がります。
 
+## 出力例
+
+実際に生成されたExcelの4シートです（サンプルデータ：5店舗×3ヶ月・1,600明細）。
+
+**店舗別**
+
+![店舗別シート](docs/screenshots/by_shop.png)
+
+**カテゴリ別**
+
+![カテゴリ別シート](docs/screenshots/by_category.png)
+
+**商品別（上位10件）**
+
+![商品別シート](docs/screenshots/top_products.png)
+
+**サマリ**
+
+![サマリシート](docs/screenshots/summary.png)
+
+これらの数字は、本ツールとは別経路（pandasを使わない素のPython）での独立検算と1円単位で一致することを確認済みです。
+
 ## Before / After
 
 | | 内容 | 所要時間 |
