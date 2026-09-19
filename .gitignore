@@ -13,8 +13,9 @@ test_data/
 .venv/
 venv/
 
-# Claude Codeのローカル設定（環境ごとの個人設定、共有しない）
-.claude/settings.local.json
+# Claude Code関連（開発時の作業指示・設定。ローカルには残すが公開しない）
+CLAUDE.md
+.claude/
 
 # OSが勝手に作るファイル
 .DS_Store
