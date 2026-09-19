@@ -56,10 +56,11 @@ def summary(df):
     total_qty = int(df[QTY].sum())
     avg_unit_price = round(total_amount / total_qty) if total_qty else 0
     months = _month_columns(df)
+    period = f"{months[0]} 〜 {months[-1]}" if months else "（データなし）"
     rows = [
-        ("対象期間", f"{months[0]} 〜 {months[-1]}"),
+        ("対象期間", period),
         ("総売上", total_amount),
         ("総販売点数", total_qty),
-        ("平均単価", avg_unit_price),
+        ("平均単価（総売上÷総販売点数）", avg_unit_price),
     ]
     return pd.DataFrame(rows, columns=["項目", "値"])

@@ -18,8 +18,32 @@ def _display_width(text):
     return sum(2 if ord(ch) > 255 else 1 for ch in str(text))
 
 
+# Excel/CSVインジェクション対策。これらの文字で始まる文字列をそのままセルに書くと、
+# openpyxl が数式だと解釈し、Excelで開いたときに実行されてしまう。
+DANGEROUS_PREFIXES = ("=", "+", "-", "@")
+
+
+def _escape_value(value):
+    """文字列が数式トリガー文字で始まっていたら、先頭に ' を足して無害化する。"""
+    if isinstance(value, str) and value.startswith(DANGEROUS_PREFIXES):
+        return "'" + value
+    return value
+
+
+def _neutralize_formulas(frame):
+    """frame の文字列の列（商品名など）だけ、危険な値を無害化した新しい表を返す。
+    数値・日付の列は触らない。
+    """
+    frame = frame.copy()
+    for col in frame.columns:
+        if frame[col].dtype == object:
+            frame[col] = frame[col].map(_escape_value)
+    return frame
+
+
 def _write_sheet(writer, sheet_name, frame):
     """DataFrame を1シートに書き、見出し太字・数値3桁区切り・列幅調整をする。"""
+    frame = _neutralize_formulas(frame)
     frame.to_excel(writer, sheet_name=sheet_name, index=False)
     ws = writer.sheets[sheet_name]
 

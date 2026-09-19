@@ -6,6 +6,9 @@ __pycache__/
 data/
 output/
 
+# テスト用データ（make_test_data.py で再生成できる）
+test_data/
+
 # 仮想環境を作る場合
 .venv/
 venv/
